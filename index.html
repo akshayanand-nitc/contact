@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - Akshay Anand</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+    body{background:#0a0a0a;color:#fff;overflow-x:hidden;position:relative;}
+
+    /* ===== Appbar ===== */
+    header{width:100%;position:fixed;top:0;left:0;background:rgba(10,10,10,0.95);
+        backdrop-filter:blur(5px);border-bottom:1px solid rgba(255,215,0,0.2);
+        display:flex;justify-content:space-between;align-items:center;padding:15px 8%;z-index:1000;}
+    .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;order:-1;}
+    .burger div{width:25px;height:3px;background:#FFD700;border-radius:2px;}
+    .logo{font-size:1.6rem;font-weight:700;background:linear-gradient(90deg,#FFD700,#FFB800);
+        -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    nav{display:flex;gap:25px;}
+    nav a{text-decoration:none;color:#fff;font-weight:500;position:relative;transition:0.3s;}
+    nav a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:#FFD700;transition:width 0.3s;}
+    nav a:hover::after{width:100%;}
+    nav a:hover{color:#FFD700;}
+
+    /* ===== Mobile Nav ===== */
+    .mobile-nav{position:fixed;top:0;left:-250px;width:250px;height:100%;background:#111;
+        padding:60px 20px;display:flex;flex-direction:column;gap:20px;transition:0.3s;z-index:999;}
+    .mobile-nav a{color:#FFD700;font-size:1.2rem;text-decoration:none;padding:5px 0;
+        border-bottom:1px solid rgba(255,215,0,0.2);}
+    .mobile-nav.active{left:0;}
+
+    @media(max-width:768px){
+        nav{display:none;}
+        .burger{display:flex;}
+    }
+
+    /* ===== Container ===== */
+    .container{max-width:1200px;margin:120px auto 50px;padding:0 20px;text-align:center;position:relative;z-index:2;}
+
+    /* ===== Title ===== */
+    .contact-section h1{
+        font-size:2.5rem;font-weight:700;margin-bottom:20px;
+        background:linear-gradient(90deg,#FFD700,#FFB800);
+        -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+        text-shadow:0 0 20px rgba(255,215,0,0.4);
+    }
+
+    .contact-section p{
+        font-size:1.1rem;color:#ccc;margin-bottom:30px;
+    }
+
+    /* ===== Contact Form ===== */
+    .contact-form{background:#111;border:1px solid rgba(255,215,0,0.2);border-radius:15px;
+        padding:30px;max-width:450px;margin:0 auto;box-shadow:0 0 15px rgba(255,215,0,0.1);}
+    .contact-form input,.contact-form textarea{
+        width:100%;padding:12px;margin-bottom:15px;border:none;border-radius:8px;background:#1a1a1a;
+        color:#fff;font-size:1rem;box-shadow:inset 0 0 5px rgba(255,215,0,0.15);
+    }
+    .contact-form textarea{resize:none;height:120px;}
+    .contact-form button{
+        background:#FFD700;color:#0a0a0a;width:100%;padding:14px;border:none;border-radius:25px;
+        font-weight:600;font-size:1.05rem;cursor:pointer;transition:0.3s;
+    }
+    .contact-form button:hover{background:#FFEA70;box-shadow:0 0 12px rgba(255,215,0,0.4);}
+    .status{margin-top:10px;font-size:1rem;}
+
+    /* ===== Social Links ===== */
+    .social-links{display:flex;justify-content:center;gap:25px;margin-top:20px;}
+    .social-links a svg{width:28px;height:28px;fill:#FFD700;transition:0.3s;}
+    .social-links a:hover svg{fill:#FFEA70;transform:scale(1.1);}
+
+    /* ===== Spotlights ===== */
+    .spotlight{
+        position:absolute;border-radius:50%;
+        background:radial-gradient(circle,rgba(255,215,0,0.2) 0%,transparent 70%);
+        filter:blur(120px);z-index:0;
+    }
+    .spotlight.one{width:400px;height:400px;top:5%;left:15%;}
+    .spotlight.two{width:300px;height:300px;bottom:10%;right:10%;}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="burger" onclick="toggleMenu()">
+        <div></div><div></div><div></div>
+    </div>
+    <div class="logo">MyPortfolio</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="research.html">Research</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="research.html">Research</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+</div>
+
+<!-- Spotlights -->
+<div class="spotlight one"></div>
+<div class="spotlight two"></div>
+
+<div class="container">
+    <div class="contact-section">
+        <h1>Contact Me</h1>
+        <p>Feel free to reach out for collaborations, research discussions, or professional inquiries.</p>
+
+        <form id="contactForm" class="contact-form" action="https://formspree.io/f/xkgzvrpj" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+            <p class="status" id="status"></p>
+        </form>
+
+        <div class="social-links">
+            <a href="https://linkedin.com" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.8v2.2h.1c.7-1.3 2.4-2.7 4.9-2.7 5.2 0 6.2 3.4 6.2 7.8V24h-5v-7.9c0-1.9-.1-4.3-2.6-4.3-2.6 0-3 2-3 4.1V24h-5V8z"/></svg>
+            </a>
+            <a href="mailto:akshayresearch@gmail.com">
+                <svg viewBox="0 0 24 24"><path d="M12 13L2 6.76V18a2 2 0 002 2h16a2 2 0 002-2V6.76L12 13z"/><path d="M12 11l10-6H2l10 6z"/></svg>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleMenu(){
+    document.getElementById("mobileNav").classList.toggle("active");
+}
+
+document.getElementById('contactForm').addEventListener('submit',async function(e){
+    e.preventDefault();
+    const status=document.getElementById('status');
+    status.textContent="Sending...";
+    const data=new FormData(this);
+    const response=await fetch(this.action,{method:this.method,body:data,headers:{'Accept':'application/json'}});
+    if(response.ok){
+        status.style.color="#4caf50";status.textContent="Message Sent Successfully!";this.reset();
+    }else{
+        status.style.color="red";status.textContent="Failed to send message.";
+    }
+});
+</script>
+
+</body>
+</html>
